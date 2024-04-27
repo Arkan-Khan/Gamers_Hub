@@ -18,19 +18,3 @@ document.addEventListener('DOMContentLoaded', function() {
     window.location.href = 'signUp.html';
   });
 });
-
-
-document.addEventListener('DOMContentLoaded', function() {
-  const loginLink = document.getElementById('loginLink');
-  const signUpLink = document.getElementById('signUpLink');
-
-  loginLink.addEventListener('click', function(event) {
-    event.preventDefault();
-    window.location.href = 'login.html';
-  });
-
-  signUpLink.addEventListener('click', function(event) {
-    event.preventDefault();
-    window.location.href = 'signUp.html';
-  });
-});
