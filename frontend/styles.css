@@ -154,3 +154,4 @@ h2 i {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust grid layout for smaller screens */
     }
 }
+
