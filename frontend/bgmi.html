@@ -24,12 +24,10 @@
             padding: 10px;
             position: relative;
             /* Add position relative */
-
         }
 
         .header-content {
             display: flex;
-            /* justify-content: space-between; */
             justify-content: center;
             align-items: center;
             max-width: 100%;
@@ -46,14 +44,14 @@
             /* Add position absolute */
             top: 20px;
             /* Adjust top position */
-            right: 20px;
+            right: 50px;
             /* Adjust right position */
         }
 
         .banner img {
             max-width: 100%;
+            height: auto;
         }
-
 
         /* Main content styles */
         main {
@@ -116,7 +114,6 @@
         .tournament-card h3 {
             font-size: 18px;
             margin-bottom: 5px;
-
         }
 
         .tournament-details {
@@ -175,6 +172,43 @@
                 margin: 15px auto 0 auto;
             }
         }
+
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .tab-container button {
+            background-color: #2c2c2c;
+            color: #ffffff;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            margin: 0 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tab-container button.active {
+            background-color: #4c4c4c;
+        }
+
+        .slider {
+            position: absolute;
+            bottom: -5px; /* Adjusted position */
+            height: 2px;
+            background-color: #ffffff;
+            transition: width 0.3s ease, left 0.3s ease; /* Added transition */
+            margin-top: 5px; /* Adjusted margin-top */
+            width: 0; /* Adjusted width */
+            z-index: 2; /* Adjusted z-index */
+        }
+
     </style>
 </head>
 
@@ -191,13 +225,16 @@
     <main>
         <section class="game-info">
             <h1>BGMI</h1>
-            <p>A type of large scale, last man standing league, Battlegrounds Mobile India is based on the popular
-                battle royale concept where players square-off to remain the last one alive.</p>
-            <a href="#" class="favorite">Create</a> <a href="#" class="favorite">Join</a>
+            <p>BGMI, short for Battlegrounds Mobile India, is a mobile-only battle royale game designed specifically for the Indian market. It takes the core gameplay of PUBG Mobile, where up to 100 players fight to be the last one standing, but with adjustments to meet local regulations. You scavenge for weapons, vehicles, and armor on a shrinking battlefield, with various other game modes like team deathmatch available for a change of pace. BGMI is free to play and allows customization of your character, making it a popular choice for mobile gamers in India seeking a thrilling online multiplayer experience.</p>
+            <a href="#" class="favorite">Create</a>
         </section>
 
         <section class="teamFinder">
-            <h2>TEAM FINDER</h2>
+            <div class="tab-container">
+                <button class="active" onclick="moveSlider(this)">Team Finder</button>
+                <button onclick="moveSlider(this)">My Teams</button>
+                <div class="slider"></div>
+            </div>
             <div class="tournament-list">
                 <div class="tournament-card">
                     <img src="Images/Joker.webp" alt="Joker Esports">
@@ -248,6 +285,31 @@
 
         </section>
     </main>
+     
+    <script>
+        function moveSlider(button) {
+            const slider = document.querySelector('.slider');
+            const tabButtons = document.querySelectorAll('.tab-container button');
+
+            // Remove active class from all buttons
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+
+            // Add active class to the clicked button
+            button.classList.add('active');
+
+            const buttonLeft = button.offsetLeft;
+            const buttonWidth = button.offsetWidth;
+
+            slider.style.width = `${buttonWidth}px`;
+            slider.style.left = `${buttonLeft}px`;
+        }
+
+        window.addEventListener('resize', function () {
+            const activeButton = document.querySelector('.tab-container button.active');
+            moveSlider(activeButton);
+        });
+
+    </script>
 </body>
 
 </html>
