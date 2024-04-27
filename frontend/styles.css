@@ -186,3 +186,84 @@ h2 i {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 }
+
+
+
+
+
+/*login.html */
+
+/* Styles for the login modal */
+.modal {
+    display: none; /* Initially hide the modal */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    width: 40%; /* Adjusted width for smaller screens */
+    max-width: 300px; /* Maximum width */
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Slightly translucent white */
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333; /* Close button color */
+}
+
+.close:hover {
+    color: #555; /* Close button color on hover */
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+button {
+    margin-top: 30px;
+    margin-right: 8px;
+    width: 45%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(92, 43, 139);
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #8c8c8c;
+}
+
+@media (max-width: 700px) {
+    .modal-content {
+        width: 90%; /* Adjusted width for smaller screens */
+        padding: 20px; /* Reduce padding for smaller screens */
+    }
+    
+    button {
+        width: 100%;
+    }
+}
