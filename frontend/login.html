@@ -23,17 +23,14 @@
             min-height: 100vh;
         }
 
-
-
         .login-container {
             background: rgba(255, 255, 255, 0.1);
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            max-width: 400px;
-            width: 100%;
+            width: 80%; /* Adjusted width for smaller screens */
+            max-width: 400px; /* Maximum width */
             text-align: center;
-            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.4); /* Slightly translucent white */
         }
 
@@ -42,7 +39,7 @@
             font-size: 0.9em;  /* Smaller font size (optional) */
         }
 
-            .login-container a {
+        .login-container a {
             color: #945bff; /* A brighter color to make it stand out */
             text-decoration: none; 
         }
@@ -77,6 +74,13 @@
         button:hover {
             background-color: #8c8c8c;
         }
+
+        @media (max-width: 700px) {
+            .login-container {
+                width: 90%; /* Adjusted width for smaller screens */
+                padding: 20px; /* Reduce padding for smaller screens */
+            }
+        }
     </style>
 </head>
 <body>
@@ -85,7 +89,7 @@
         <input type="text" placeholder="Email or Phone number" />
         <input type="password" placeholder="Password" />
         <button>Log In</button>
-        <p>Don't have an account? <a href="#" id="signUpLink">Sign Up</a></p
+        <p>Don't have an account? <a href="signUp.html" id="signUpLink">Sign Up</a></p>
     </div>
 </body>
 </html>
