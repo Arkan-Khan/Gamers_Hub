@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Player Profile - GAMERS HUB</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    /* Reset some default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #020224;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .login-container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      width: 80%;
+      /* Adjusted width for smaller screens */
+      max-width: 600px;
+      /* Maximum width */
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      /* Slightly translucent white */
+    }
+
+    .login-container p {
+      margin-top: 15px;
+      /* Add spacing above the signup section */
+      font-size: 0.9em;
+      /* Smaller font size (optional) */
+    }
+
+    .login-container a {
+      color: #945bff;
+      /* A brighter color to make it stand out */
+      text-decoration: none;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4c4c4c;
+      color: #ffffff;
+    }
+
+    /* In your CSS Styles */
+    .dob-input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4c4c4c;
+      color: #ffffff;
+    }
+
+
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 50px;
+      background-color: rgb(92, 43, 139);
+      color: #ffffff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #8c8c8c;
+    }
+
+    .head-info {
+      text-align: left;
+      color: rgb(204, 204, 221);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4c4c4c;
+      color: #968282;
+      /* Customize default dropdown arrow */
+      background-image: url('path/to/your/arrow.png');
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      /* Position within the dropdown */
+      background-size: 15px auto;
+      /* Adjust size of the arrow image */
+    }
+
+
+    select {
+      color: #ffffff;
+      /* White text for the selected option */
+      background-color: #4c4c4c;
+      /* Matches existing background */
+    }
+
+    select option {
+      color: #ffffff;
+      background-color: #4c4c4c;
+    }
+
+    select option:first-child {
+      color: inherit;
+    }
+
+
+
+
+    @media (max-width: 768px) {
+      .login-container {
+        width: 90%;
+        /* Adjusted width for smaller screens */
+        padding: 20px;
+        /* Reduce padding for smaller screens */
+      }
+
+      /* .login-container .username-box,
+      .login-container .fullname-box,
+      .login-container .country-box,
+      .login-container .city-box {
+        /* display: block; */
+        /* display: block;
+        width: 200px;
+        margin-bottom: 10px;
+      } */
+
+
+      .login-container .username input,
+      .login-container .fullname input,
+      .login-container .country select,
+      .login-container .city select,
+      .login-container input[type="date"] {
+        width: 100%;
+      }
+
+      .username input,
+      .fullname input,
+      .country select,
+      .city select {
+        width: auto;
+        /* Reset width to automatic */
+      }
+
+    }
+
+    .username input {
+      width: 250px;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4c4c4c;
+      color: #ffffff;
+    }
+
+    .username-box {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .fullname input {
+      width: 250px;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4c4c4c;
+      color: #ffffff;
+    }
+
+    .fullname-box {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .username-fullname {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .country select {
+      width: 250px;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4c4c4c;
+      color: #ffffff;
+    }
+
+    .country-box {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .city select {
+      width: 250px;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4c4c4c;
+      color: #ffffff;
+    }
+
+    .city-box {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .country-city {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <h2>Player Profile</h2>
+    <div class="username-fullname">
+      <div class="username">
+        <div class="head-info">Username</div>
+        <div class="username-box">
+          <input type="text" placeholder="Enter your Username" />
+        </div>
+      </div>
+      <div class="fullname">
+        <div class="head-info">Fullname</div>
+        <div class="fullname-box">
+          <input type="text" placeholder="Enter your full name" />
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="head-info">Date of Birth</div>
+      <input type="date" id="dateOfBirth" class="dob-input" placeholder="Select your D.O.B." />
+    </div>
+    <div>
+      <div class="head-info">Gender</div>
+      <!-- <input type="text" placeholder="Gender" /> -->
+      <select name="gender" id="genderSelect">
+        <option id="gender" value="Gender" disabled selected>Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <div class="country-city">
+      <div class="country">
+        <div class="head-info">Country</div>
+        <div class="country-box">
+          <select name="country" id="countrySelect">
+            <option value="" disabled selected>Select your Country</option>
+            <option value="India">India</option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+            <option value="Australia">Australia</option>
+            <option value="Canada">Canada</option>
+            <option value="New Zealand">New Zealand</option>
+          </select>
+        </div>
+      </div>
+      <div class="city">
+        <div class="head-info">City</div>
+        <div class="city-box">
+          <select name="country" id="citySelect">
+            <option value="" disabled selected>Select your City</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Banglore">Banglore</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Kolkata">Kolkata</option>
+            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+            <option value="Delhi">Delhi</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <button>Create</button>
+  </div>
+
+</body>
+
+</html>

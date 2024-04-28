@@ -11,7 +11,7 @@ const gameCards = document.querySelectorAll('.game-card');
 gameCards.forEach(card => {
     card.addEventListener('click', (event) => {
         event.preventDefault(); // Prevent default behavior of anchor tag
-        
+
         // Show the login modal when a game card is clicked
         loginModal.style.display = 'block';
     });
