@@ -1,15 +1,18 @@
 const express = require('express');
 const pg = require('pg');
-
+const cors = require('cors');
 const app = express();
 const port = 3000;
+
+app.use(express.json());
+app.use(cors());
 
 // Database connection details (replace with your actual credentials)
 const dbConfig = {
     user: 'postgres',
     host: 'localhost',
     database: 'Gamers_Hub',
-    password: 'root',
+    password: '2643',
     port: 5432
   };
 
@@ -18,16 +21,28 @@ const pool = new pg.Pool(dbConfig); // Create a connection pool
 // Route to get all players (replace 'Players' with your table name if different)
 app.get('/players', async (req, res) => {
   try {
+    const eventName = req.body.eventName;
+    console.log(req.body)
     const client = await pool.connect();
     const result = await client.query('SELECT * FROM Players');
     const players = result.rows;
-    res.json(players); // Send the fetched players data as JSON
+    res.status(200).json(players); // Send the fetched players data as JSON
     client.release();
   } catch (error) {
     console.error(error);
     res.status(500).send('Error fetching players');
   }
 });
+
+app.post('/signup', async (req,res) => {
+  try{
+    console.log(req.body);
+    res.json("req recieved");
+  } 
+  catch{
+    console.log(error)
+  }
+})
 
 // **Endpoint for Games table (GET all games):**
 app.get('/games', (req, res) => {
