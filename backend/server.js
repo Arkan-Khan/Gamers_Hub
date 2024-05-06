@@ -1,5 +1,5 @@
 const express = require('express');
-const pg = require('pg');
+const { Client } = require('pg');
 const cors = require('cors');
 const app = express();
 const port = 3000;
@@ -8,19 +8,24 @@ app.use(express.json());
 app.use(cors());
 
 // Database connection details (replace with your actual credentials)
-const dbConfig = {
-    user: 'postgres',
-    host: 'localhost',
-    database: 'Gamers_Hub',
-    password: '2643',
-    port: 5432
-  };
+const client = new Client({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'Gamers_Hub',
+  password: '2643',
+  port: 5432
+});
 
-const pool = new pg.Pool(dbConfig); // Create a connection pool
+client.connect()
+  .then(() => console.log('Connected to the database'))
+  .catch(error => console.error('Error connecting to the database:', error));
+
+
 
 // Route to get all players (replace 'Players' with your table name if different)
 app.get('/players', async (req, res) => {
   try {
+    await client.connect();
     const eventName = req.body.eventName;
     console.log(req.body)
     const client = await pool.connect();
@@ -34,12 +39,40 @@ app.get('/players', async (req, res) => {
   }
 });
 
-app.post('/signup', async (req,res) => {
+app.post('/signup', async (req, res) => {
+  try {
+    console.log(req.body);
+    const query = `
+    INSERT into PLAYERS (
+      p_name, age, email, password
+    )
+    VALUES (
+      $1, $2, $3, $4
+    );
+`
+    const values = [req.body.name, req.body.age, req.body.email, req.body.password];
+    const result = await client.query(query, values);
+    console.log('User created successfully', result)
+    res.json({message: true});
+  }
+  catch(error) {
+    console.log(error)
+  }
+})
+
+app.post('/login', async (req,res) => {
   try{
     console.log(req.body);
-    res.json("req recieved");
-  } 
-  catch{
+    const { email, password } = req.body;
+    const query = 'SELECT * FROM players WHERE email = $1 AND password = $2';
+    const result = await client.query(query, [email, password]);
+    if (result.rows.length === 1) {
+      res.json({ message: true, user: result.rows[0] });
+    } else {
+      // No user found with provided credentials
+      res.json({ message: false });
+    }
+  } catch(error) {
     console.log(error)
   }
 })
