@@ -12,7 +12,7 @@ const client = new Client({
   user: 'postgres',
   host: 'localhost',
   database: 'Gamers_Hub',
-  password: '2643',
+  password: 'root',
   port: 5432
 });
 
@@ -20,7 +20,53 @@ client.connect()
   .then(() => console.log('Connected to the database'))
   .catch(error => console.error('Error connecting to the database:', error));
 
+  app.post('/signup', async (req, res) => {
+    try {
+      console.log(req.body);
+      const query = `
+      INSERT into PLAYERS (
+        p_name, age, email, password
+      )
+      VALUES (
+        $1, $2, $3, $4
+      );
+  `
+      const values = [req.body.name, req.body.age, req.body.email, req.body.password];
+      const result = await client.query(query, values);
+      console.log('User created successfully', result)
+      res.json({message: true});
+    }
+    catch(error) {
+      console.log(error)
+    }
+  })
+  
+  app.post('/login', async (req,res) => {
+    try{
+      console.log(req.body);
+      const { email, password } = req.body;
+      const query = 'SELECT * FROM players WHERE email = $1 AND password = $2';
+      const result = await client.query(query, [email, password]);
+      if (result.rows.length === 1) {
+        res.json({ message: true, user: result.rows[0] });
+      } else {
+        // No user found with provided credentials
+        res.json({ message: false });
+      }
+    } catch(error) {
+      console.log(error)
+    }
+  })
 
+
+
+
+
+
+
+
+
+  
 
 // Route to get all players (replace 'Players' with your table name if different)
 app.get('/players', async (req, res) => {
@@ -39,43 +85,7 @@ app.get('/players', async (req, res) => {
   }
 });
 
-app.post('/signup', async (req, res) => {
-  try {
-    console.log(req.body);
-    const query = `
-    INSERT into PLAYERS (
-      p_name, age, email, password
-    )
-    VALUES (
-      $1, $2, $3, $4
-    );
-`
-    const values = [req.body.name, req.body.age, req.body.email, req.body.password];
-    const result = await client.query(query, values);
-    console.log('User created successfully', result)
-    res.json({message: true});
-  }
-  catch(error) {
-    console.log(error)
-  }
-})
 
-app.post('/login', async (req,res) => {
-  try{
-    console.log(req.body);
-    const { email, password } = req.body;
-    const query = 'SELECT * FROM players WHERE email = $1 AND password = $2';
-    const result = await client.query(query, [email, password]);
-    if (result.rows.length === 1) {
-      res.json({ message: true, user: result.rows[0] });
-    } else {
-      // No user found with provided credentials
-      res.json({ message: false });
-    }
-  } catch(error) {
-    console.log(error)
-  }
-})
 
 // **Endpoint for Games table (GET all games):**
 app.get('/games', (req, res) => {
