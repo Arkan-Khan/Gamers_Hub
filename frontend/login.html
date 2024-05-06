@@ -11,11 +11,50 @@
     <div class="login-container">
         <form action="" method="post">
             <h2>Login</h2>
-            <input class="text-box" type="text" name="email_or_phone" placeholder="Email or Phone number" required/>
-            <input class="text-box" type="password" name="password" placeholder="Password" required/>
+            <input class="text-box" id="email_input" type="text" name="email" placeholder="Email" required/>
+            <input class="text-box" id="password_input" type="password" name="password" placeholder="Password" required/>
             <button class="login-button" type="submit">Log In</button>
         </form>
         <p>Don't have an account? <a href="signUp.html" id="signUpLink">Sign Up</a></p>
     </div>
 </body>
+
+<script>
+    let email = "";
+    let password = "";
+
+    const emailInput = document.getElementById("email_input");
+    const passwordInput = document.getElementById("password_input");
+
+    emailInput.addEventListener("input", (event) => {
+      email = event.target.value;
+  
+    });
+    passwordInput.addEventListener("input", (event) => {
+      password = event.target.value;
+  
+    });
+    
+    document.querySelector('.login-button').addEventListener('click', async (event) => {
+      event.preventDefault();
+      console.log(email, password);
+      console.log("sending request")
+      const req = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({email, password})
+      })
+      const res = await req.json();
+      console.log(res);
+      if(res.message) {
+        window.location.href = "index.html";
+      } else {
+        window.alert("Invalid Credentials");
+      }
+    })
+    
+  </script>
 </html>

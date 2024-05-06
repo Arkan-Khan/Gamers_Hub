@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,67 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body class="login-signup-body">
   <div class="login-container">
-    <form action="" method="post">
+    <form>
       <h2>Sign Up</h2>
-      <input class="text-box" type="text" name="first_name" placeholder="Enter your first name" required/>
-      <input class="text-box" type="text" name="last_name" placeholder="Enter your last name" />
-      <input class="text-box" type="text" name="email_or_phone" placeholder="Email or Phone number" required/>
-      <input class="text-box" type="password" name="password" placeholder="Set Password" required/>
+      <input class="text-box" id="name_input" type="text" name="name" placeholder="Enter your name"
+        required />
+      <input class="text-box" id="email_input" type="email" name="email" placeholder="Email" required />
+      <input class="text-box" id="age_input" type="number" name="age" placeholder="Age" required />
+      <input class="text-box" id="password_input" type="password" name="password" placeholder="Set Password" required />
       <button class="login-button" type="submit">Sign Up</button>
     </form>
     <p>Already have an account? <a href="login.html" id="loginLink">Log In</a></p>
   </div>
 </body>
+
+<script>
+  let name = "";
+  let email = "";
+  let password = "";
+  let age;
+  const nameInput = document.getElementById("name_input");
+  const emailInput = document.getElementById("email_input");
+  const passwordInput = document.getElementById("password_input");
+  const ageInput = document.getElementById("age_input");
+  nameInput.addEventListener("input", (event) => {
+    name = event.target.value;
+
+  });
+  emailInput.addEventListener("input", (event) => {
+    email = event.target.value;
+
+  });
+  passwordInput.addEventListener("input", (event) => {
+    password = event.target.value;
+
+  });
+  ageInput.addEventListener("input", (event) => {
+    age = event.target.value;
+
+  });
+  
+  document.querySelector('.login-button').addEventListener('click', async (event) => {
+    event.preventDefault();
+    console.log(name, email, password, age);
+    console.log("sending request")
+    const req = await fetch("http://localhost:3000/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      body: JSON.stringify({name, email, password, age})
+    })
+    const res = await req.json();
+    console.log(res);
+    if(res.message) {
+      window.location.href = "index.html";
+    }
+  })
+  
+</script>
+
 </html>
