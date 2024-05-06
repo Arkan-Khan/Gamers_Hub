@@ -1,10 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BGMI - Krafton</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        #registerModal {
+            font-family: Arial, sans-serif;
+            background-color: #020224;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #registerModal .modal-content {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        #registerModal .modal-content h2 {
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        #registerModal .text-box {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4c4c4c;
+            color: #ffffff;
+        }
+
+        #registerModal .login-modal {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 50px;
+            background-color: rgb(92, 43, 139);
+            color: #ffffff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #registerModal .login-modal:hover {
+            background-color: #8c8c8c;
+        }
+
+        #registerModal .button-container {
+            display: flex;
+            justify-content: space-between;
+            
+        }
+
+
+        .close{
+            color:#4c4c4c;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .close:hover{
+            color: white;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 25px;
+            cursor: pointer;
+            transition: 0.2s;
+            
+        }
+    </style>
 </head>
 
 <body>
@@ -22,7 +103,12 @@
     <main style="margin: 20px auto;">
         <section class="game-description">
             <h1>BGMI</h1>
-            <p>BGMI, short for Battlegrounds Mobile India, is a mobile-only battle royale game designed specifically for the Indian market. It takes the core gameplay of PUBG Mobile, where up to 100 players fight to be the last one standing, but with adjustments to meet local regulations. You scavenge for weapons, vehicles, and armor on a shrinking battlefield, with various other game modes like team deathmatch available for a change of pace. BGMI is free to play and allows customization of your character, making it a popular choice for mobile gamers in India seeking a thrilling online multiplayer experience.</p>
+            <p>BGMI, short for Battlegrounds Mobile India, is a mobile-only battle royale game designed specifically for
+                the Indian market. It takes the core gameplay of PUBG Mobile, where up to 100 players fight to be the
+                last one standing, but with adjustments to meet local regulations. You scavenge for weapons, vehicles,
+                and armor on a shrinking battlefield, with various other game modes like team deathmatch available for a
+                change of pace. BGMI is free to play and allows customization of your character, making it a popular
+                choice for mobile gamers in India seeking a thrilling online multiplayer experience.</p>
             <a href="#" class="create">Create</a>
             <a href="#" class="create">Register</a>
         </section>
@@ -75,7 +161,8 @@
                                 </div>
                                 <div>
                                     <label class="back-label">Description (in 50 words)</label>
-                                    <p class="Description">I am Looking for a Player who can beat me please help me to find a best teams who have iphone 12 pro</p>
+                                    <p class="Description">I am Looking for a Player who can beat me please help me to
+                                        find a best teams who have iphone 12 pro</p>
                                 </div>
                             </div>
                         </div>
@@ -122,8 +209,9 @@
                                 </div>
                                 <div>
                                     <label class="back-label">Description (in 50 words)</label>
-                                    <p class="Description">I am Looking for a Player who can beat me please help me to find a best teams who have iphone 12 pro</p>
-                                </div>  
+                                    <p class="Description">I am Looking for a Player who can beat me please help me to
+                                        find a best teams who have iphone 12 pro</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -168,9 +256,10 @@
                                 </div>
                                 <div>
                                     <label class="back-label">Description (in 50 words)</label>
-                                    <p class="Description">I am Looking for a Player who can beat me please help me to find a best teams who have iphone 12 pro</p>
+                                    <p class="Description">I am Looking for a Player who can beat me please help me to
+                                        find a best teams who have iphone 12 pro</p>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -215,9 +304,10 @@
                                 </div>
                                 <div>
                                     <label class="back-label">Description (in 50 words)</label>
-                                    <p class="Description">I am Looking for a Player who can beat me please help me to find a best teams who have iphone 12 pro</p>
+                                    <p class="Description">I am Looking for a Player who can beat me please help me to
+                                        find a best teams who have iphone 12 pro</p>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -268,7 +358,8 @@
                                 </div>
                                 <div>
                                     <label class="back-label">Description (in 50 words)</label>
-                                    <p class="Description">I am Looking for a Player who can beat me please help me to find a best teams who have iphone 12 pro</p>
+                                    <p class="Description">I am Looking for a Player who can beat me please help me to
+                                        find a best teams who have iphone 12 pro</p>
                                 </div>
                                 <a href="#" class="request-button">+ Request to Join</a>
                             </div>
@@ -279,7 +370,37 @@
 
         </section>
     </main>
-     
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 style="color: white; 
+                        justify-content: center;">Register</h2>
+            <form id="registrationForm">
+                <input class="text-box" id="ingamename_input" type="text" name="ingamename" placeholder="InGame Name"
+                    required />
+
+                <input class="text-box" id="characterid_input" type="number" name="characterid"
+                    placeholder="Character ID" required />
+
+                <input class="text-box" id="role_input" type="text" name="role" placeholder="Role" required />
+
+                <input class="text-box" id="language_input" type="text" name="language" placeholder="Language"
+                    required />
+
+                <input class="text-box" id="number_input" type="number" name="whatsappnumber"
+                    placeholder="WhatsApp Number" required />
+
+                <input class="text-box" id="bio_input" type="text" name="bio" placeholder="Bio" required />
+
+            </form>
+            <div class="button-container">
+                <button type="button" class="login-modal">Cancel</button>
+                <button type="submit" class="login-modal">Register</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         function moveSlider(button) {
             const slider = document.querySelector('.slider');
@@ -307,6 +428,28 @@
             const activeButton = document.querySelector('.slider-button-div button.active');
             moveSlider(activeButton);
         });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const registerButton = document.querySelectorAll('.create')[1];
+            const modal = document.getElementById('registerModal');
+            const closeButton = modal.querySelector('.close');
+
+            registerButton.addEventListener('click', function (event) {
+                event.preventDefault();
+                modal.style.display = 'block';
+            });
+
+            closeButton.addEventListener('click', function () {
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
+
 </html>
